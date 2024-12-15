@@ -1,0 +1,137 @@
+Key Features
+
+Dynamic Configuration: Uses YAML files to define workflows, reducing hardcoding.
+
+Step-Based Execution: Breaks down workflows into modular steps like Authentication, HTTP Requests, and Actions.
+
+Shared Context: Shares data between steps through a unified context, ensuring smooth data flow.
+
+Scalability: Can easily be extended to support more integrations or new step types.
+
+Detailed Logging: Provides logs for better traceability and debugging.
+
+How It Works
+
+Parsing YAML Configurations
+
+The engine reads and validates a YAML configuration file that specifies the workflow and step details.
+
+Executing Steps
+
+Each step is executed in the order defined in the YAML file.
+
+Supported steps include:
+
+Authentication: Handles API Key, OAuth, and credentials-based authentication.
+
+HTTP Requests: Sends GET/POST requests with configurable headers and query parameters.
+
+Data Transformation: Extracts, structures, and transforms data from API responses.
+
+Actions: Executes tasks like sending emails based on processed data.
+
+Shared Context Management
+
+Maintains a shared context for storing data that needs to be accessed by subsequent steps.
+
+Logging
+
+Logs all major actions, errors, and updates to help with monitoring and troubleshooting.
+
+Design Approach
+
+Principles
+
+Modularity:
+
+Each step is implemented as a separate class inheriting from a common base (IntegrationStep).
+
+This ensures clean, reusable, and maintainable code.
+
+Flexibility:
+
+New steps can be added by implementing their logic and registering their type in the engine.
+
+Object-Oriented Design:
+
+Inheritance and polymorphism are used for step execution.
+
+Encapsulation ensures data integrity within each step.
+
+Scalability:
+
+Built to handle diverse use cases with minimal adjustments.
+
+Execution Flow
+
+Initialize the Engine:
+
+Load the YAML configuration and initialize the shared context.
+
+Execute Steps:
+
+Loop through the steps in the YAML file and execute them dynamically based on their type.
+
+Update Context:
+
+Each step updates the shared context with the data it generates, making it available for the next steps.
+
+Log Everything:
+
+All actions, errors, and context updates are logged for full traceability.
+
+How to Use
+
+Requirements
+
+Python Version: 3.8 or higher.
+
+Dependencies: Install required packages using pip install -r requirements.txt.
+
+Architecture Diagram
+
+Refer to Architecture.png for a high-level overview of the system design.
+
+Project Structure
+
+
+
+Steps to Run
+
+Clone the repository:
+
+git clone <repository_url>
+cd project-oot
+
+Install dependencies:
+
+pip install -r requirements.txt
+
+Prepare the YAML configuration file:
+
+Edit integrations/sample_config.yaml to define your workflow.
+
+Run the engine:
+
+python run_engine.py integrations/sample_config.yaml
+
+Check logs:
+
+Execution logs are saved in logs/engine.log for review and debugging.
+
+Mock SMTP Server
+
+A mock SMTP server is included to test email notifications.
+    install requirement before: pip install aiosmtpd
+    Start the mock SMTP server:
+    python mock_server.py
+
+    The server will run on localhost:1025 and log email details to the console
+
+A mock  server is included to test integration.
+    install requirement before: pip install flask
+    Start the mock service:
+    python mock_service.py
+
+    The server will run on localhost:8080
+
