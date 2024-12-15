@@ -1,3 +1,8 @@
+Integration Engine
+
+This project implements a YAML-driven integration engine for interacting with security products. The engine dynamically processes YAML configuration files 
+to create and execute integrations, supporting steps such as authentication, HTTP requests, data transformation, and actions like sending email notifications.
+
 Key Features
 
 Dynamic Configuration: Uses YAML files to define workflows, reducing hardcoding.
@@ -30,36 +35,25 @@ Data Transformation: Extracts, structures, and transforms data from API response
 
 Actions: Executes tasks like sending emails based on processed data.
 
-Shared Context Management
-
+Shared Context Management:
 Maintains a shared context for storing data that needs to be accessed by subsequent steps.
 
-Logging
-
+Logging:
 Logs all major actions, errors, and updates to help with monitoring and troubleshooting.
 
-Design Approach
-
-Principles
 
 Modularity:
-
 Each step is implemented as a separate class inheriting from a common base (IntegrationStep).
-
 This ensures clean, reusable, and maintainable code.
 
 Flexibility:
-
 New steps can be added by implementing their logic and registering their type in the engine.
 
 Object-Oriented Design:
-
 Inheritance and polymorphism are used for step execution.
-
 Encapsulation ensures data integrity within each step.
 
 Scalability:
-
 Built to handle diverse use cases with minimal adjustments.
 
 Execution Flow
@@ -118,8 +112,6 @@ python run_engine.py integrations/sample_config.yaml
 Check logs:
 
 Execution logs are saved in logs/engine.log for review and debugging.
-
-Mock SMTP Server
 
 A mock SMTP server is included to test email notifications.
     install requirement before: pip install aiosmtpd
